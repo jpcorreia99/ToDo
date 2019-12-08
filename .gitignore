@@ -92,5 +92,5 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/intellij
 
-src/Services/resources 
-tokens/StoredCredential
+src/Services/resources/
+/tokens/

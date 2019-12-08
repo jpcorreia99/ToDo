@@ -46,7 +46,7 @@ public class CalendarAccess {
      * @return An authorized Credential object.
      * @throws IOException If the credentials.json file cannot be found.
      */
-    private  Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
+    private Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) throws IOException {
         // Load client secrets.
         InputStream in = CalendarAccess.class.getResourceAsStream(CREDENTIALS_FILE_PATH);
         if (in == null) {
@@ -64,7 +64,7 @@ public class CalendarAccess {
         return new AuthorizationCodeInstalledApp(flow, receiver).authorize("user");
     }
 
-    public  void insertEvent(ToDo td) throws IOException, GeneralSecurityException {
+    public void insertEvent(ToDo td) throws IOException, GeneralSecurityException {
         // Build a new authorized API client service.
         final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
         Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
@@ -74,7 +74,7 @@ public class CalendarAccess {
         String task = td.getTask();
 
         Event event = new Event()
-                .setSummary(task.substring(0, 10)+"..." )
+                .setSummary(task.substring(0, Math.min(10,task.length())) + "..." )
                 .setDescription(task);
 
         LocalDateTime limitDate = td.getLimitDate();

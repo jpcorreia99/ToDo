@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UsersMapTest {
@@ -20,12 +19,14 @@ class UsersMapTest {
         userDAO.deleteUser("testUsername");
 
         UsersMap usersMapTest = new UsersMap();
-        try{
-            usersMapTest.registerUser("testUsername","testPassword");
-        }catch (Exception e){System.out.println(e.getMessage());}
+        try {
+            usersMapTest.registerUser("testUsername", "testPassword");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
-        ToDo td1 = new ToDo(1,  "test1", Urgency.NOT_URGENT, null);
+        ToDo td1 = new ToDo(1, "test1", Urgency.NOT_URGENT, null);
         ToDo td2 = new ToDo(2, "test2", Urgency.NORMAL, null);
         ToDo td3 = new ToDo(3, "test3", Urgency.URGENT, null);
         List<ToDo> actualArray = new ArrayList<>();
@@ -39,9 +40,10 @@ class UsersMapTest {
         Set<ToDo> testSet = usersMapTest.sortByUrgency();
         List<ToDo> testArray = new ArrayList<>(testSet);
 
-        for (int i = 0; i<actualArray.size(); i++){
+        for (int i = 0; i < actualArray.size(); i++) {
             assertEquals(actualArray.get(i).getUrgency().urgencyValue, testArray.get(i).getUrgency().urgencyValue);
         }
+        userDAO.deleteUser("testUsername");
     }
 
     @Test
@@ -51,15 +53,17 @@ class UsersMapTest {
         userDAO.deleteUser("testUsername");
 
         UsersMap usersMapTest = new UsersMap();
-        try{
-            usersMapTest.registerUser("testUsername","testPassword");
-        }catch (Exception e){System.out.println(e.getMessage());}
+        try {
+            usersMapTest.registerUser("testUsername", "testPassword");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
-        ToDo td1 = new ToDo(1,  "test1", Urgency.NORMAL, LocalDateTime.now());
+        ToDo td1 = new ToDo(1, "test1", Urgency.NORMAL, LocalDateTime.now());
         ToDo td2 = new ToDo(2, "test2", Urgency.NORMAL, LocalDateTime.now().minusDays(2));
         ToDo td3 = new ToDo(3, "test3", Urgency.NORMAL, LocalDateTime.now().plusDays(3));
-        ToDo td4 = new ToDo(4, "test3", Urgency.NORMAL,null);
+        ToDo td4 = new ToDo(4, "test3", Urgency.NORMAL, null);
         List<ToDo> actualArray = new ArrayList<>();
         actualArray.add(td2);
         actualArray.add(td1);
@@ -68,14 +72,15 @@ class UsersMapTest {
 
         usersMapTest.addToDo("test1", Urgency.NORMAL, LocalDateTime.now());
         usersMapTest.addToDo("test2", Urgency.NORMAL, LocalDateTime.now().minusDays(2));
-        usersMapTest.addToDo( "test3", Urgency.NORMAL, LocalDateTime.now().plusDays(3));
-        usersMapTest.addToDo( "test4", Urgency.NORMAL,null);
+        usersMapTest.addToDo("test3", Urgency.NORMAL, LocalDateTime.now().plusDays(3));
+        usersMapTest.addToDo("test4", Urgency.NORMAL, null);
         Set<ToDo> testSet = usersMapTest.sortByUrgency();
         List<ToDo> testArray = new ArrayList<>(testSet);
 
-        for (int i = 0; i<actualArray.size(); i++){
+        for (int i = 0; i < actualArray.size(); i++) {
             assertEquals(actualArray.get(i).getUrgency().urgencyValue, testArray.get(i).getUrgency().urgencyValue);
         }
+        userDAO.deleteUser("testUsername");
     }
 
     @Test
@@ -85,12 +90,14 @@ class UsersMapTest {
         userDAO.deleteUser("testUsername");
 
         UsersMap usersMapTest = new UsersMap();
-        try{
-            usersMapTest.registerUser("testUsername","testPassword");
-        }catch (Exception e){System.out.println(e.getMessage());}
+        try {
+            usersMapTest.registerUser("testUsername", "testPassword");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
-        ToDo td1 = new ToDo(1,  "test1", Urgency.NORMAL,null);
+        ToDo td1 = new ToDo(1, "test1", Urgency.NORMAL, null);
         ToDo td2 = new ToDo(2, "test2", Urgency.NORMAL, null);
         ToDo td3 = new ToDo(3, "test3", Urgency.NORMAL, null);
         List<ToDo> actualArray = new ArrayList<>();
@@ -99,14 +106,15 @@ class UsersMapTest {
         actualArray.add(td3);
 
 
-        usersMapTest.addToDo("test1", Urgency.NORMAL,null);
-        usersMapTest.addToDo("test2", Urgency.NORMAL,null);
-        usersMapTest.addToDo( "test3", Urgency.NORMAL, null);
+        usersMapTest.addToDo("test1", Urgency.NORMAL, null);
+        usersMapTest.addToDo("test2", Urgency.NORMAL, null);
+        usersMapTest.addToDo("test3", Urgency.NORMAL, null);
         Set<ToDo> testSet = usersMapTest.sortByCreationDate();
         List<ToDo> testArray = new ArrayList<>(testSet);
 
-        for (int i = 0; i<actualArray.size(); i++){
+        for (int i = 0; i < actualArray.size(); i++) {
             assertEquals(actualArray.get(i).getUrgency().urgencyValue, testArray.get(i).getUrgency().urgencyValue);
         }
+        userDAO.deleteUser("testUsername");
     }
 }

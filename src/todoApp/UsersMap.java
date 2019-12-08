@@ -24,7 +24,6 @@ public class UsersMap {
 
     public UsersMap() {
         UserDAO userDAO = new UserDAO();
-        this.allUsers = new HashMap<>();
         this.allUsers = userDAO.retrieveData();
     }
 
@@ -35,7 +34,7 @@ public class UsersMap {
         if (allUsers.containsKey(username)) {
             throw new UsernameAlreadyInUseException(username + " already in use");
         } else {
-            User newUser = new User(username, pasword);
+            User newUser = new User(this.allUsers.size()+1, username, pasword);
             allUsers.put(username, newUser);
             this.currentUser = newUser;
             UserDAO userDAO = new UserDAO();

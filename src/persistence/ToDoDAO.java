@@ -65,10 +65,6 @@ public class ToDoDAO {
                 posted.setString(9, urgency.toString());
                 posted.setInt(10, idUser);
 
-                /*PreparedStatement posted = connection.prepareStatement(
-                        "INSERT INTO todo Values (" + globalId + "," + relativeId + ",'" + task + "'," + creationDateString
-                                + "," + startDateString + "," + limitDateString + "," + completionDateString + ",'"
-                                + status + "','" + urgency + "'," + idUser + ")");*/
                 posted.executeUpdate();
             } catch (SQLException e) {
                 System.out.println("SQLException: " + e.getMessage());

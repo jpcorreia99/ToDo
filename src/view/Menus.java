@@ -128,8 +128,8 @@ public class Menus {
     public static void toDoMainMenu() {
         int opt = -1;
         ScannerWrapper sw = new ScannerWrapper();
-        sw.cleanScreen();
         while (opt != 0) {
+            sw.cleanScreen();
             System.out.println("Welcome, you have " + users.getNumUncompletedTasks() + " uncompleted tasks.\n\n");
             System.out.println("1 - Add ToDo\n" +
                     "2 - Check To Do List\n" +

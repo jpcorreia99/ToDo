@@ -92,13 +92,14 @@ public class UserDAO {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM user WHERE username =?");
             statement.setString(1, username);
             ResultSet rs = statement.executeQuery();
-            rs.next();
-            int idUser = rs.getInt(1);
-            ToDoDAO toDoDAO = new ToDoDAO();
-            toDoDAO.deleteToDos(idUser);
-            statement = connection.prepareStatement("DELETE FROM user WHERE username =?");
-            statement.setString(1, username);
-            statement.executeUpdate();
+            while(rs.next()) {
+                int idUser = rs.getInt(1);
+                ToDoDAO toDoDAO = new ToDoDAO();
+                toDoDAO.deleteToDos(idUser);
+                statement = connection.prepareStatement("DELETE FROM user WHERE username =?");
+                statement.setString(1, username);
+                statement.executeUpdate();
+            }
 
         } catch (SQLException e) {
             System.out.println("SQLException: " + e.getMessage());

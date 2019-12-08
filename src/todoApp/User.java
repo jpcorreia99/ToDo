@@ -13,7 +13,6 @@ import java.util.TreeSet;
 
 public class User {
     // to set an id for SQL primary key
-    private static int userCount = 0;
 
     private int id;
     private String username;
@@ -21,9 +20,8 @@ public class User {
     private Map<Integer, ToDo> mapOfToDo;
 
 
-    public User(String username, String password) {
-        userCount += 1;
-        this.id = userCount;
+    public User(int id,String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.mapOfToDo = new HashMap<>();
@@ -31,7 +29,6 @@ public class User {
     }
 
     public User(int id, String username, String password, Map<Integer, ToDo> mapOfToDo) {
-        userCount += 1;
         this.id = id;
         this.username = username;
         this.password = password;
@@ -144,7 +141,6 @@ public class User {
     public ToDo retrieveToDo(int idToDo) {
         return this.mapOfToDo.get(idToDo);
     }
-
 }
 
 
