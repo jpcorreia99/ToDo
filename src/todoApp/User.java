@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class User {
-    // to set an id for SQL primary key
 
     private int id;
     private String username;
@@ -20,7 +19,7 @@ public class User {
     private Map<Integer, ToDo> mapOfToDo;
 
 
-    public User(int id,String username, String password) {
+    public User(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -62,14 +61,12 @@ public class User {
         ToDoDAO toDoDAO = new ToDoDAO();
         toDoDAO.insertToDo(td, this.id);
 
-        if(limitDate!=null) {
+        if (limitDate != null) {
             CalendarAccess calendarAccess = new CalendarAccess();
-
             try {
                 calendarAccess.insertEvent(td);
             } catch (IOException | GeneralSecurityException e) {
                 System.out.println(e.getMessage());
-                // e.printStackTrace();
             }
         }
     }
@@ -111,7 +108,18 @@ public class User {
 
     public int getNumOfUncompletedTasks() {
         return (int) this.mapOfToDo.values().stream()
-                .filter(td ->  td.getStatus() != Status.Completed).count();
+                .filter(td -> td.getStatus() != Status.Completed).count();
+    }
+
+    /**
+     * Returns a treeset ordered by the todoApp.ToDo's limit date
+     * todoApp.ToDo's who are already copmpleted are displayed last
+     */
+
+    public Set<ToDo> sortByLimitDate() {
+        Set<ToDo> toDoSet = new TreeSet<>(new LimitDateComparator());
+        toDoSet.addAll(this.mapOfToDo.values());
+        return toDoSet;
     }
 
     public Set<ToDo> sortByCreationDate() {
@@ -127,16 +135,6 @@ public class User {
         return toDoSet;
     }
 
-    /**
-     * Returns a treeset ordered by the todoApp.ToDo's limit date
-     * todoApp.ToDo's who are already copmpleted are displayed last
-     */
-
-    public Set<ToDo> sortByLimitDate() {
-        Set<ToDo> toDoSet = new TreeSet<>(new LimitDateComparator());
-        toDoSet.addAll(this.mapOfToDo.values());
-        return toDoSet;
-    }
 
     public ToDo retrieveToDo(int idToDo) {
         return this.mapOfToDo.get(idToDo);

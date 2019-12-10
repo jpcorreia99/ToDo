@@ -9,7 +9,7 @@ import java.util.List;
 
 public class ToDoPaginator {
     /** ArrayList who stores each sub_array of To_do's.toString()*/
-    List<List<String>> paginatorLists;
+    private List<List<String>> paginatorLists;
 
     /** Number of todo's by page*/
     private int pageSize = 3;

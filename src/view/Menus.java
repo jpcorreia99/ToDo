@@ -7,10 +7,6 @@ import todoApp.UsersMap;
 import todoApp.exceptions.InvalidCredentialsException;
 import todoApp.exceptions.UsernameAlreadyInUseException;
 
-import Services.*;
-
-import java.io.IOException;
-import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -26,45 +22,6 @@ public class Menus {
     }
 
     public static void firstMenu() {
-/*
-       try{
-            users.registerUser("a", "b");
-            users.registerUser("b", "b");
-            users.registerUser("c", "b");
-            users.registerUser("d", "b");
-            users.registerUser("e", "b");
-            users.login("a", "b");
-       } catch (UsernameAlreadyInUseException e) {
-            System.out.println(e.getMessage());
-        } catch (InvalidCredentialsException e){
-            System.out.println(e.getMessage());
-        }
-
-
-        users.addToDo("criar algo1", Urgency.NORMAL, null);
-        users.addToDo("criar algo2", Urgency.NOT_URGENT, LocalDateTime.now());
-        users.addToDo("criar algo3", Urgency.URGENT, null);
-        users.addToDo("criar algo4", Urgency.NORMAL, null);
-        users.addToDo("criar algo5", Urgency.NOT_URGENT, LocalDateTime.now());
-        users.addToDo("criar algo6", Urgency.URGENT, null);
-
-        users.startToDo(2);
-        users.completeToDo(4);
-        users.changeUrgency(5, Urgency.NORMAL);
-        users.startToDo(5);
-        users.changeLimitDate(5, LocalDateTime.now().plusDays(3));
-        users.changeLimitDate(5, LocalDateTime.now().minusDays(2));
-
-
-        try {
-            users.login("b", "b");
-        } catch (InvalidCredentialsException e){
-            System.out.println(e.getMessage());
-        }
-
-        users.addToDo("criar algo7", Urgency.NOT_URGENT, LocalDateTime.now().plusDays(1));
-
-*/
 
         int opt = -1;
         while (opt != 0) {
@@ -321,7 +278,6 @@ public class Menus {
                 }
                 break;
         }
-
     }
 }
 

@@ -11,7 +11,7 @@ public class ScannerWrapper {
         Scanner sc = new Scanner(System.in);
         boolean ok = false;
         String ret = "";
-        while (!ok) {
+        while (!ok){
             try {
                 ret = sc.nextLine();
                 ok = true;

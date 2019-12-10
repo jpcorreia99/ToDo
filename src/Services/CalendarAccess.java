@@ -15,7 +15,6 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
-import com.google.api.services.calendar.model.Events;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -83,10 +82,6 @@ public class CalendarAccess {
         DateTime startDateTime = new DateTime(limitDate.format(formatter));
         DateTime endDateTime = new DateTime(limitDate.format(formatter));
 
-       // DateTime startDateTime = new DateTime("2019-12-28T18:00:00");
-
-        //DateTime endDateTime = new DateTime("2019-12-28T06:00:00-07:00");
-
 
         EventDateTime start = new EventDateTime()
                 .setDateTime(startDateTime)
@@ -101,6 +96,8 @@ public class CalendarAccess {
         String calendarId = "primary";
         event = service.events().insert(calendarId, event).execute();
         System.out.printf("Event created: %s\n", event.getHtmlLink());
+
+
 
 
 

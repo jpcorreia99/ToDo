@@ -5,7 +5,6 @@ import todoApp.exceptions.InvalidCredentialsException;
 import todoApp.exceptions.UsernameAlreadyInUseException;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -19,7 +18,6 @@ public class UsersMap {
      * current Logged in user
      */
     private User currentUser;
-
 
 
     public UsersMap() {

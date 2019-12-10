@@ -47,7 +47,6 @@ public class ToDo {
 
     // Getters
 
-
     public LocalDateTime getCreationDate() {
         return this.creationDate;
     }
